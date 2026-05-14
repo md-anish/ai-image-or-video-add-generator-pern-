@@ -48,7 +48,7 @@ The platform supports secure authentication, subscription-based access, and real
 
 ## Screenshots
 
-<img width="120" height="180" alt="Screenshot 2026-05-14 203346" src="https://github.com/user-attachments/assets/af3e879b-796f-4ba2-a37f-7dd3ef13229e" />
+<img width="200px" height="200px" alt="Screenshot 2026-05-14 203346" src="https://github.com/user-attachments/assets/af3e879b-796f-4ba2-a37f-7dd3ef13229e" />
 
 
 
