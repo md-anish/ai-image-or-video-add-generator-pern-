@@ -1,105 +1,73 @@
-# AI-image-or-video-Add-generator-PERN-
+# React + TypeScript + Vite
 
-An AI-powered advertisement generation platform where users can create marketing ads using AI.  
-The platform supports secure authentication, subscription-based access, and real-time error monitoring.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- AI-powered ad generation
-- User authentication using Clerk
-- Subscription-based premium access
-- Secure payment/subscription flow
-- Responsive UI
-- Real-time error monitoring with Sentry
-- PostgreSQL database integration
-- REST API support
-- User dashboard for managing ads
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tech Stack
+## React Compiler
 
-### Frontend
-- React.js
-- Tailwind CSS
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Backend
-- Node.js
-- Express.js
+## Expanding the ESLint configuration
 
-### Database
-- PostgreSQL
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### Authentication
-- Clerk
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### Monitoring & Error Tracking
-- Sentry
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-### Other Tools
-- OpenAI API (if used)
-- Stripe/Razorpay (if used for subscriptions)
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-## Workflow
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-1. User signs up/login using Clerk authentication.
-2. User purchases a subscription plan.
-3. Authenticated users can generate AI-based advertisements.
-4. Ads are stored and managed using PostgreSQL.
-5. Sentry monitors errors and application crashes in real-time.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Screenshots
-
-<img width="300px" height="300px" alt="Screenshot 2026-05-14 203346" src="https://github.com/user-attachments/assets/af3e879b-796f-4ba2-a37f-7dd3ef13229e" />
-<img width="300px" height="300px" alt="Screenshot 2026-05-14 203404" src="https://github.com/user-attachments/assets/00e0f31a-5229-4465-b840-46a23fbb39fd" />
-<img width="300px" height="300px" alt="Screenshot 2026-05-14 203421" src="https://github.com/user-attachments/assets/28c2f531-d103-45d7-8182-a77b19359e0b" />
-<img width="300px" height="300px" alt="Screenshot 2026-05-14 203451" src="https://github.com/user-attachments/assets/636a5c75-1e8a-4563-a136-fba549eb4965" />
-
-
-
-## Installation
-
-### Clone the repository
-git clone <repo-link>
-
-### Install dependencies
-npm install
-
-### Setup environment variables
-Create a .env file and add:
-
-DATABASE_URL=
-CLERK_SECRET_KEY=
-SENTRY_DSN=
-
-### Start the server
-npm run dev
-
-## Environment Variables
-
-- DATABASE_URL
-- CLERK_SECRET_KEY
-- SENTRY_DSN
-- OPENAI_API_KEY
-
-## Subscription System
-
-Users must purchase a subscription plan to access AI ad generation features.
-Only subscribed users can generate and save advertisements.
-
-## Error Monitoring
-
-Sentry is integrated for:
-- Real-time error tracking
-- Performance monitoring
-- Crash reporting
-
-## Future Improvements
-
-- Multiple ad templates
-- AI image generation
-- Multi-language support
-- Ad performance analytics
-- Team collaboration support
-
-## License
-
-This project is licensed under the MIT License.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
